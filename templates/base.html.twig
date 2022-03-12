@@ -12,8 +12,23 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
     </head>
     <body>
+        <header>
+            <div class="header-left">
+                <h1><a class="title" href="{{ path('home') }}">Boockmania</a></h1>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ path('app_login') }}">Login</a></li>
+                    <li><a href="{{ path('app_logout') }}">Logout</a></li>
+                </ul>   
+            </nav>
+        </header>
         {% block body %}{% endblock %}
     </body>
 </html>
