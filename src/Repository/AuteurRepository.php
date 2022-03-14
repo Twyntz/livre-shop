@@ -2,30 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Panier;
+use App\Entity\Auteur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Panier|null find($id, $lockMode = null, $lockVersion = null)
- * @method Panier|null findOneBy(array $criteria, array $orderBy = null)
- * @method Panier[]    findAll()
- * @method Panier[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Auteur|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Auteur|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Auteur[]    findAll()
+ * @method Auteur[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PanierRepository extends ServiceEntityRepository
+class AuteurRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Panier::class);
+        parent::__construct($registry, Auteur::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Panier $entity, bool $flush = true): void
+    public function add(Auteur $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -37,7 +37,7 @@ class PanierRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Panier $entity, bool $flush = true): void
+    public function remove(Auteur $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,15 +46,15 @@ class PanierRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Panier[] Returns an array of Panier objects
+    //  * @return Auteur[] Returns an array of Auteur objects
     //  */
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
+            ->orderBy('a.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -63,10 +63,10 @@ class PanierRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Panier
+    public function findOneBySomeField($value): ?Auteur
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
