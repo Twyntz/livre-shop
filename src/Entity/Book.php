@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,6 +43,22 @@ class Book
      * @ORM\Column(type="string", length=255)
      */
     private $image;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Categorie::class, inversedBy="books")
+     */
+    private $categorie;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Auteur::class, inversedBy="books")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $auteur;
+
+    public function __construct()
+    {
+        $this->categorie = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -103,6 +121,42 @@ class Book
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Categorie>
+     */
+    public function getCategorie(): Collection
+    {
+        return $this->categorie;
+    }
+
+    public function addCategorie(Categorie $categorie): self
+    {
+        if (!$this->categorie->contains($categorie)) {
+            $this->categorie[] = $categorie;
+        }
+
+        return $this;
+    }
+
+    public function removeCategorie(Categorie $categorie): self
+    {
+        $this->categorie->removeElement($categorie);
+
+        return $this;
+    }
+
+    public function getAuteur(): ?Auteur
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?Auteur $auteur): self
+    {
+        $this->auteur = $auteur;
 
         return $this;
     }

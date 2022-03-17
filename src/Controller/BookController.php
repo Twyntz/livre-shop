@@ -66,6 +66,17 @@ class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $bookRepository->add($book);
             return $this->redirectToRoute('app_book_index', [], Response::HTTP_SEE_OTHER);
+
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $categories = $book->getCategorie();  // Récupère les données saisies = tableaux des clés
+            foreach ($categories as $a) {             // Pour chaque élément du tableau
+                $a->addBook($book);                // Ajoute le château édité à la liste des entités en relation
+                $entityManager->persist($a);           // Ajoute la ligne dans la table "stockant" la relation
+            }
+
+            $entityManager->persist($book);
+            $entityManager->flush();
         }
 
         return $this->renderForm('book/edit.html.twig', [
@@ -75,7 +86,7 @@ class BookController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="app_book_delete", methods={"POST"})
+     * @Route("/{id}/delete", name="app_book_delete", methods={"POST"})
      */
     public function delete(Request $request, Book $book, BookRepository $bookRepository): Response
     {

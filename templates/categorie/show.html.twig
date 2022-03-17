@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book index{% endblock %}
+{% block title %}Categorie{% endblock %}
 
 {% block body %}
-    <h1>Book index</h1>
+    <h1>{{ categorie.name }}</h1>
+
     <div class="contain">
         {% for book in books %}
             <div class="card">
@@ -16,7 +17,10 @@
             </div>
         {% endfor %}    
     </div>
+    <a href="{{ path('app_categorie_index') }}">Voir toutes les categories</a>
+
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('app_book_new') }}">Ajouter un livre</a>
-    {% endif %}
+        <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">Modifier</a>
+        {{ include('categorie/_delete_form.html.twig') }}
+    {% endif %} 
 {% endblock %}

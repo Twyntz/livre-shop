@@ -34,3 +34,15 @@ a {
 .header-left {
     margin: 20px;
 }
+
+.contain {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

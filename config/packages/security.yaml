@@ -37,6 +37,15 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: '^/book/new', roles: ROLE_ADMIN }
+        - { path: '^/category/new', roles: ROLE_ADMIN }
+        - { path: '^/auteur/new', roles: ROLE_ADMIN }
+        - { path: '^/book/\d+/delete', roles: ROLE_ADMIN }
+        - { path: '^/category/\d+/delete', roles: ROLE_ADMIN }
+        - { path: '^/auteur/\d+/delete', roles: ROLE_ADMIN }
+        - { path: '^/book/\d+/edit', roles: ROLE_ADMIN }
+        - { path: '^/category/\d+/edit', roles: ROLE_ADMIN }
+        - { path: '^/auteur/\d+/edit', roles: ROLE_ADMIN }
 
 when@test:
     security:

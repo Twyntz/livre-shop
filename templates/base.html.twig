@@ -19,13 +19,20 @@
     <body>
         <header>
             <div class="header-left">
-                <h1><a class="title" href="{{ path('app_book_index') }}">Boockmania</a></h1>
+                <h1><a class="title" href="{{ path('home') }}">Boockmania</a></h1>
             </div>
 
             <nav>
                 <ul>
-                    <li><a href="{{ path('app_login') }}">Login</a></li>
-                    <li><a href="{{ path('app_logout') }}">Logout</a></li>
+                    <li><a href="{{ path('app_book_index') }}">Livre</a></li>
+                    <li><a href="{{ path('app_categorie_index') }}">Categorie</a></li>
+                    <li><a href="{{ path('app_auteur_index') }}">Auteur</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('app_logout') }}">Deconnection</a></li>
+                    {% else %}
+                        <li><a href="{{ path('app_login') }}">Connection</a></li>
+                    <li><a href="{{ path('app_register') }}">Inscription</a></li>
+                    {% endif %}
                 </ul>   
             </nav>
         </header>
