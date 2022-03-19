@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon panier{% endblock %}
+{% set foo = 1 %}
+{% block body %}
+    <h1>Mon panier</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Image</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Prix</th>
+                <th scope="col">supp</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for panier in paniers %}
+            <tr>
+                <th scope="row">{{foo}}</th>
+                <td><img class="img_petit" src="{{panier.produit.image}}" alt=""></td>
+                <td>{{panier.produit.name}}</td>
+                <td>{{panier.quantite}}</td>
+                <td>{{panier.produit.price|round(2, 'common') }}€</td>
+                <td><a href="{{ path('app_panier_delete', {'id': panier.id}) }}">Supprimer du panier</a></td>
+            </tr>
+            {% set foo = foo + 1 %}
+        {% else %}
+            <tr scope="row">
+                <td colspan="6" class="text-center">Vous n'avez aucun produit dans votre panier</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

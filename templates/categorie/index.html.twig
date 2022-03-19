@@ -1,36 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categorie index{% endblock %}
+{% block title %}Toutes les catégories{% endblock %}
 
 {% block body %}
-    <h1>Categorie index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <h1>Toutes les catégories</h1>
+    <div class="d-flex justify-content-around">
         {% for categorie in categories %}
-            <tr>
-                <td>{{ categorie.id }}</td>
-                <td>{{ categorie.name }}</td>
-                <td>
-                    <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}">show</a>
-                    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
+            <a class="btn btn-primary" href="{{ path('app_categorie_show', {'id': categorie.id}) }}">{{ categorie.name }}</a>
         {% endfor %}
-        </tbody>
-    </table>
-
+    </div>
+        
     {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('app_categorie_new') }}">Ajouter une categorie</a>
     {% endif %}

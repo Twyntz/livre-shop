@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book index{% endblock %}
+{% block title %}Tous les livres{% endblock %}
 
 {% block body %}
-    <h1>Book index</h1>
+    <h1 class="text-center">Tous les livres</h1>
     <div class="contain">
         {% for book in books %}
             <div class="card">
-                <img src="{{book.image}}" alt="image {{book.name}}">
-                <div class="card_content">
-                    <h3>{{book.name}}</h3>
-                    <h4>{{book.price}}</h4>
-                    <a href="{{ path('app_book_show', {'id': book.id}) }}">Voir</a>
+                <img class="card-img-top" src="{{book.image}}" alt="image {{book.name}}">
+                <div class="card_body">
+                    <h5 class="card-title">{{book.name}}</h5>
+                    <p class="card-text">{{book.price}} €</p>
+                    <a class="btn btn-primary" href="{{ path('app_book_show', {'id': book.id}) }}">Voir</a>
                 </div>
             </div>
         {% endfor %}    
     </div>
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('app_book_new') }}">Ajouter un livre</a>
+        <a class="btn btn-info m-5" href="{{ path('app_book_new') }}">Ajouter un livre</a>
     {% endif %}
 {% endblock %}
