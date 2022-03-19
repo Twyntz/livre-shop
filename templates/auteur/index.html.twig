@@ -11,5 +11,7 @@
         {% endfor %}
     </div>
 
-    <a href="{{ path('app_auteur_new') }}">Ajouter un auteur</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_auteur_new') }}">Ajouter une categorie</a>
+    {% endif %}
 {% endblock %}
